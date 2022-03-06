@@ -1,0 +1,3 @@
+D:/CLionProjects/clionGitProject/ga-allocator/cmake-build-debug/CMakeFiles/ga_allocator.dir
+D:/CLionProjects/clionGitProject/ga-allocator/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/CLionProjects/clionGitProject/ga-allocator/cmake-build-debug/CMakeFiles/rebuild_cache.dir
