@@ -10,11 +10,11 @@
  */
 class Param {
 public:
-    static const int SPEED = 15; //worker速度
+    static const int SPEED = 20; //worker速度
     constexpr static const double ALPHA = 1.0; //score系数
     constexpr static const double BETA = -0.5; //路程系数
-    constexpr static double GAMMA = -0.25; //时间间隔系数
-    constexpr static double I = 0.5; //worker初始时间间隔值
+    constexpr static double GAMMA = -0.3; //时间间隔系数
+    constexpr static double I = 0.75; //worker初始时间间隔值
 };
 
 #endif //BS_ALLOCATOR_CONSTANT_PARAM_H
