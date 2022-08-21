@@ -1,5 +1,5 @@
 # 一种多目标调度优化的遗传算法实现
-提供了一种用遗传算法解决多目标优化的样例，具体业务背景请见：https://juejin.cn/post/7071934813292199949/
+提供了一种用遗传算法解决多目标线性规划的样例：给位于不同position的station分配worker，使得整体的score尽可能高。
 
 ## 说明
 1. 运行时需要指定运行路径为项目路径，用于从data目录下读取station和worker数据，stationInfo.csv和workerInfo.csv下各提供了一条样例数据，可以参照样例数据格式造一批数进行测试；
