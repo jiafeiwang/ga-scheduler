@@ -47,10 +47,10 @@ RM = "D:\clion\CLion 2019.3.4\bin\cmake\win\bin\cmake.exe" -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = D:\CLionProjects\clionGitProject\ga-allocator
+CMAKE_SOURCE_DIR = D:\CLionProjects\ga-scheduler
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = D:\CLionProjects\clionGitProject\ga-allocator\cmake-build-debug
+CMAKE_BINARY_DIR = D:\CLionProjects\ga-scheduler\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,9 +79,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\CLionProjects\clionGitProject\ga-allocator\cmake-build-debug\CMakeFiles D:\CLionProjects\clionGitProject\ga-allocator\cmake-build-debug\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\CLionProjects\ga-scheduler\cmake-build-debug\CMakeFiles D:\CLionProjects\ga-scheduler\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\CLionProjects\clionGitProject\ga-allocator\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\CLionProjects\ga-scheduler\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -110,17 +110,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named ga_allocator
+# Target rules for targets named ga_scheduler
 
 # Build rule for target.
-ga_allocator: cmake_check_build_system
-	$(MAKE) -f CMakeFiles\Makefile2 ga_allocator
-.PHONY : ga_allocator
+ga_scheduler: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 ga_scheduler
+.PHONY : ga_scheduler
 
 # fast build rule for target.
-ga_allocator/fast:
-	$(MAKE) -f CMakeFiles\ga_allocator.dir\build.make CMakeFiles/ga_allocator.dir/build
-.PHONY : ga_allocator/fast
+ga_scheduler/fast:
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/build
+.PHONY : ga_scheduler/fast
 
 main.obj: main.cpp.obj
 
@@ -128,7 +128,7 @@ main.obj: main.cpp.obj
 
 # target to build an object file
 main.cpp.obj:
-	$(MAKE) -f CMakeFiles\ga_allocator.dir\build.make CMakeFiles/ga_allocator.dir/main.cpp.obj
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/main.cpp.obj
 .PHONY : main.cpp.obj
 
 main.i: main.cpp.i
@@ -137,7 +137,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles\ga_allocator.dir\build.make CMakeFiles/ga_allocator.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -146,89 +146,89 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles\ga_allocator.dir\build.make CMakeFiles/ga_allocator.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-src/GA.obj: src/GA.cpp.obj
+src/Chromosome.obj: src/Chromosome.cpp.obj
 
-.PHONY : src/GA.obj
-
-# target to build an object file
-src/GA.cpp.obj:
-	$(MAKE) -f CMakeFiles\ga_allocator.dir\build.make CMakeFiles/ga_allocator.dir/src/GA.cpp.obj
-.PHONY : src/GA.cpp.obj
-
-src/GA.i: src/GA.cpp.i
-
-.PHONY : src/GA.i
-
-# target to preprocess a source file
-src/GA.cpp.i:
-	$(MAKE) -f CMakeFiles\ga_allocator.dir\build.make CMakeFiles/ga_allocator.dir/src/GA.cpp.i
-.PHONY : src/GA.cpp.i
-
-src/GA.s: src/GA.cpp.s
-
-.PHONY : src/GA.s
-
-# target to generate assembly for a file
-src/GA.cpp.s:
-	$(MAKE) -f CMakeFiles\ga_allocator.dir\build.make CMakeFiles/ga_allocator.dir/src/GA.cpp.s
-.PHONY : src/GA.cpp.s
-
-src/Station.obj: src/Station.cpp.obj
-
-.PHONY : src/Station.obj
+.PHONY : src/Chromosome.obj
 
 # target to build an object file
-src/Station.cpp.obj:
-	$(MAKE) -f CMakeFiles\ga_allocator.dir\build.make CMakeFiles/ga_allocator.dir/src/Station.cpp.obj
-.PHONY : src/Station.cpp.obj
+src/Chromosome.cpp.obj:
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/src/Chromosome.cpp.obj
+.PHONY : src/Chromosome.cpp.obj
 
-src/Station.i: src/Station.cpp.i
+src/Chromosome.i: src/Chromosome.cpp.i
 
-.PHONY : src/Station.i
+.PHONY : src/Chromosome.i
 
 # target to preprocess a source file
-src/Station.cpp.i:
-	$(MAKE) -f CMakeFiles\ga_allocator.dir\build.make CMakeFiles/ga_allocator.dir/src/Station.cpp.i
-.PHONY : src/Station.cpp.i
+src/Chromosome.cpp.i:
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/src/Chromosome.cpp.i
+.PHONY : src/Chromosome.cpp.i
 
-src/Station.s: src/Station.cpp.s
+src/Chromosome.s: src/Chromosome.cpp.s
 
-.PHONY : src/Station.s
+.PHONY : src/Chromosome.s
 
 # target to generate assembly for a file
-src/Station.cpp.s:
-	$(MAKE) -f CMakeFiles\ga_allocator.dir\build.make CMakeFiles/ga_allocator.dir/src/Station.cpp.s
-.PHONY : src/Station.cpp.s
+src/Chromosome.cpp.s:
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/src/Chromosome.cpp.s
+.PHONY : src/Chromosome.cpp.s
 
-src/StationNode.obj: src/StationNode.cpp.obj
+src/Ga.obj: src/Ga.cpp.obj
 
-.PHONY : src/StationNode.obj
+.PHONY : src/Ga.obj
 
 # target to build an object file
-src/StationNode.cpp.obj:
-	$(MAKE) -f CMakeFiles\ga_allocator.dir\build.make CMakeFiles/ga_allocator.dir/src/StationNode.cpp.obj
-.PHONY : src/StationNode.cpp.obj
+src/Ga.cpp.obj:
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/src/Ga.cpp.obj
+.PHONY : src/Ga.cpp.obj
 
-src/StationNode.i: src/StationNode.cpp.i
+src/Ga.i: src/Ga.cpp.i
 
-.PHONY : src/StationNode.i
+.PHONY : src/Ga.i
 
 # target to preprocess a source file
-src/StationNode.cpp.i:
-	$(MAKE) -f CMakeFiles\ga_allocator.dir\build.make CMakeFiles/ga_allocator.dir/src/StationNode.cpp.i
-.PHONY : src/StationNode.cpp.i
+src/Ga.cpp.i:
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/src/Ga.cpp.i
+.PHONY : src/Ga.cpp.i
 
-src/StationNode.s: src/StationNode.cpp.s
+src/Ga.s: src/Ga.cpp.s
 
-.PHONY : src/StationNode.s
+.PHONY : src/Ga.s
 
 # target to generate assembly for a file
-src/StationNode.cpp.s:
-	$(MAKE) -f CMakeFiles\ga_allocator.dir\build.make CMakeFiles/ga_allocator.dir/src/StationNode.cpp.s
-.PHONY : src/StationNode.cpp.s
+src/Ga.cpp.s:
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/src/Ga.cpp.s
+.PHONY : src/Ga.cpp.s
+
+src/Task.obj: src/Task.cpp.obj
+
+.PHONY : src/Task.obj
+
+# target to build an object file
+src/Task.cpp.obj:
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/src/Task.cpp.obj
+.PHONY : src/Task.cpp.obj
+
+src/Task.i: src/Task.cpp.i
+
+.PHONY : src/Task.i
+
+# target to preprocess a source file
+src/Task.cpp.i:
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/src/Task.cpp.i
+.PHONY : src/Task.cpp.i
+
+src/Task.s: src/Task.cpp.s
+
+.PHONY : src/Task.s
+
+# target to generate assembly for a file
+src/Task.cpp.s:
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/src/Task.cpp.s
+.PHONY : src/Task.cpp.s
 
 src/Worker.obj: src/Worker.cpp.obj
 
@@ -236,7 +236,7 @@ src/Worker.obj: src/Worker.cpp.obj
 
 # target to build an object file
 src/Worker.cpp.obj:
-	$(MAKE) -f CMakeFiles\ga_allocator.dir\build.make CMakeFiles/ga_allocator.dir/src/Worker.cpp.obj
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/src/Worker.cpp.obj
 .PHONY : src/Worker.cpp.obj
 
 src/Worker.i: src/Worker.cpp.i
@@ -245,7 +245,7 @@ src/Worker.i: src/Worker.cpp.i
 
 # target to preprocess a source file
 src/Worker.cpp.i:
-	$(MAKE) -f CMakeFiles\ga_allocator.dir\build.make CMakeFiles/ga_allocator.dir/src/Worker.cpp.i
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/src/Worker.cpp.i
 .PHONY : src/Worker.cpp.i
 
 src/Worker.s: src/Worker.cpp.s
@@ -254,35 +254,62 @@ src/Worker.s: src/Worker.cpp.s
 
 # target to generate assembly for a file
 src/Worker.cpp.s:
-	$(MAKE) -f CMakeFiles\ga_allocator.dir\build.make CMakeFiles/ga_allocator.dir/src/Worker.cpp.s
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/src/Worker.cpp.s
 .PHONY : src/Worker.cpp.s
 
-src/io_utils.obj: src/io_utils.cpp.obj
+src/data_reader.obj: src/data_reader.cpp.obj
 
-.PHONY : src/io_utils.obj
+.PHONY : src/data_reader.obj
 
 # target to build an object file
-src/io_utils.cpp.obj:
-	$(MAKE) -f CMakeFiles\ga_allocator.dir\build.make CMakeFiles/ga_allocator.dir/src/io_utils.cpp.obj
-.PHONY : src/io_utils.cpp.obj
+src/data_reader.cpp.obj:
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/src/data_reader.cpp.obj
+.PHONY : src/data_reader.cpp.obj
 
-src/io_utils.i: src/io_utils.cpp.i
+src/data_reader.i: src/data_reader.cpp.i
 
-.PHONY : src/io_utils.i
+.PHONY : src/data_reader.i
 
 # target to preprocess a source file
-src/io_utils.cpp.i:
-	$(MAKE) -f CMakeFiles\ga_allocator.dir\build.make CMakeFiles/ga_allocator.dir/src/io_utils.cpp.i
-.PHONY : src/io_utils.cpp.i
+src/data_reader.cpp.i:
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/src/data_reader.cpp.i
+.PHONY : src/data_reader.cpp.i
 
-src/io_utils.s: src/io_utils.cpp.s
+src/data_reader.s: src/data_reader.cpp.s
 
-.PHONY : src/io_utils.s
+.PHONY : src/data_reader.s
 
 # target to generate assembly for a file
-src/io_utils.cpp.s:
-	$(MAKE) -f CMakeFiles\ga_allocator.dir\build.make CMakeFiles/ga_allocator.dir/src/io_utils.cpp.s
-.PHONY : src/io_utils.cpp.s
+src/data_reader.cpp.s:
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/src/data_reader.cpp.s
+.PHONY : src/data_reader.cpp.s
+
+src/gene.obj: src/gene.cpp.obj
+
+.PHONY : src/gene.obj
+
+# target to build an object file
+src/gene.cpp.obj:
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/src/gene.cpp.obj
+.PHONY : src/gene.cpp.obj
+
+src/gene.i: src/gene.cpp.i
+
+.PHONY : src/gene.i
+
+# target to preprocess a source file
+src/gene.cpp.i:
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/src/gene.cpp.i
+.PHONY : src/gene.cpp.i
+
+src/gene.s: src/gene.cpp.s
+
+.PHONY : src/gene.s
+
+# target to generate assembly for a file
+src/gene.cpp.s:
+	$(MAKE) -f CMakeFiles\ga_scheduler.dir\build.make CMakeFiles/ga_scheduler.dir/src/gene.cpp.s
+.PHONY : src/gene.cpp.s
 
 # Help Target
 help:
@@ -290,27 +317,30 @@ help:
 	@echo ... all (the default if no target is provided)
 	@echo ... clean
 	@echo ... depend
-	@echo ... ga_allocator
+	@echo ... ga_scheduler
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
-	@echo ... src/GA.obj
-	@echo ... src/GA.i
-	@echo ... src/GA.s
-	@echo ... src/Station.obj
-	@echo ... src/Station.i
-	@echo ... src/Station.s
-	@echo ... src/StationNode.obj
-	@echo ... src/StationNode.i
-	@echo ... src/StationNode.s
+	@echo ... src/Chromosome.obj
+	@echo ... src/Chromosome.i
+	@echo ... src/Chromosome.s
+	@echo ... src/Ga.obj
+	@echo ... src/Ga.i
+	@echo ... src/Ga.s
+	@echo ... src/Task.obj
+	@echo ... src/Task.i
+	@echo ... src/Task.s
 	@echo ... src/Worker.obj
 	@echo ... src/Worker.i
 	@echo ... src/Worker.s
-	@echo ... src/io_utils.obj
-	@echo ... src/io_utils.i
-	@echo ... src/io_utils.s
+	@echo ... src/data_reader.obj
+	@echo ... src/data_reader.i
+	@echo ... src/data_reader.s
+	@echo ... src/gene.obj
+	@echo ... src/gene.i
+	@echo ... src/gene.s
 .PHONY : help
 
 

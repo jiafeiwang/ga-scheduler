@@ -1,79 +1,58 @@
 #include <iostream>
-#include <list>
-#include <vector>
+#include <direct.h>
 #include <time.h>
-
-#include "include/Worker.h"
-#include "include/StationNode.h"
-#include "include/io_utils.h"
-#include "include/GA.h"
+#include <algorithm>
 
 using namespace std;
 
+#include "include/Worker.h"
+#include "include/Task.h"
+#include "include/data_reader.h"
+#include "include/Ga.h"
 
-int main(){
+using namespace std;
+
+int main() {
     cout<<"begin..."<<endl;
+    cout<<"\n-----------------------------"<<endl;
 
-    vector<Station*> *vs = getStationsFromFile("./data/stationInfo.csv");
-    vector<Worker*> *vw = getWorkersFromFile("./data/workerInfo.csv");
+    cout<<"runTime Dir: "<<endl;
+    cout<<_pgmptr<<endl;
 
-    cout<<"vs size: "<<vs->size()<<endl;
-    cout<<"vw size: "<<vw->size()<<endl;
+    cout<<"work Dir: "<<endl;
+    char buffer[1000];
+    char *path = getcwd(buffer, 1000);
+    printf(path);
+    cout<<"\n-----------------------------"<<endl;
 
-    vector<StationNode*> *nodeVec = new vector<StationNode*>();
-    for(Station* s: *vs){
-        nodeVec->push_back(new StationNode(s));
-    }
+    int seed = 111;
+    srand(seed);
 
+//    加载task和worker数据集
+//    D:/ClionProjects/ga-scheduler/data/taskInfo.csv
+    vector<Task> tasks = getTasksFromFile("./data/taskInfo.csv");
+    vector<Worker> workers = getWorkersFromFile("./data/workerInfo.csv");
 
-    GA *ga = new GA(nodeVec,vw);
+    cout<<"tasks size: "<<tasks.size()<<endl;
+    cout<<"workers size: "<<workers.size()<<endl;
 
-    clock_t start, end;
-    start = clock();
+//    cout<<tasks[0]<<endl;
+//    cout<<workers[0]<<endl;
 
-    ga->getOriginalGroup();
+    Ga ga = Ga(1,30,1209,tasks,workers);
 
-    ga->optimize(2);
+//    初始化种群
+    ga.initialChromosome();
 
-    end = clock();
-    double duration = (double)(end -start);
-    cout<<"after optimize, using: "<<duration<<" ms"<<endl;
+//    迭代
+    ga.gaIter(50,10,10000,0);
 
-    cout<<"--------------------"<<endl;
-    cout<<"nodeVec size: "<<nodeVec->size()<<endl;
-    vector<StationNode*> *headVec = ga->getHeadNodeVec();
+//    检查最终结果是否存货
+    ga.check(tasks,workers);
 
-//    for(StationNode* node: *headVec){
-//        StationNode::show(node);
-//    }
+    cout<<"\n-----------------------------"<<endl;
 
-    cout<<"headVec size: "<<headVec->size()<<endl;
-    ga->getAvgWorthy(headVec);
+    cout<<"finish!"<<endl;
 
-    cout<<"nodeVec size: "<<nodeVec->size()<<endl;
-
-
-    //destruct
-    for(StationNode* stationNode: *nodeVec){
-        delete stationNode;
-    }
-
-    delete nodeVec;
-
-    for(Station* station: *vs){
-        delete station;
-    }
-
-    delete vs;
-
-    for(Worker* worker: *vw){
-        delete worker;
-    }
-
-    delete vw;
-
-    cout<<"...finish"<<endl;
     return 0;
 }
-
-

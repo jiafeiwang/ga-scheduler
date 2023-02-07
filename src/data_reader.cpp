@@ -1,11 +1,14 @@
 //
-// Created by 加菲汪 on 2022/2/28.
+// Created by 加菲汪 on 2023/2/2.
 //
+
+#include "../include/Task.h"
+#include "../include/Worker.h"
+#include "../include/data_reader.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <sstream>
-#include "../include/io_utils.h"
 
 /**
  * 将数值格式的字符串转成数字
@@ -22,8 +25,8 @@ T str2n(std::string s){
     return t;
 }
 
-Station *getStationFromLine(std::string line) {
-    int id, beginTime, endTime, x, y;
+Task getTaskFromLine(std::string line) {
+    int id, beginTime = 0, required=0, x=0, y=0;
     int le = line.length();
     int begin = 0, end = 0, ct = 0;
     for(char c: line){
@@ -39,14 +42,14 @@ Station *getStationFromLine(std::string line) {
             begin = end;
         }
         switch (ct){
-            case SID:
+            case TID:
                 id = str2n<int>(str);
                 break;
-            case SBeginTime:
+            case BeginTime:
                 beginTime = str2n<int>(str);
                 break;
-            case SEndTime:
-                endTime = beginTime + str2n<int>(str) * 60;
+            case Required:
+                required = str2n<int>(str);
                 break;
             case SX:
                 x = str2n<int>(str);
@@ -58,27 +61,27 @@ Station *getStationFromLine(std::string line) {
                 break;
         }
     }
-    Station *station = new Station(id,Position<int,int>(x,y), nullptr,beginTime,endTime);
-    return station;
+    Task task = Task(id,Position<int,int>(x,y),beginTime,required);
+    return task;
 }
 
 
-std::vector<Station*> *getStationsFromFile(std::string stationFileName) {
-    std::ifstream fin(stationFileName,std::ios::in);
+std::vector<Task> getTasksFromFile(std::string taskFileName) {
+    std::ifstream fin(taskFileName,std::ios::in);
     if(!fin){
         std::cout<<"open file failed!"<<std::endl;
-        return nullptr;
+        return {};
     }
-    std::vector<Station*> *v = new std::vector<Station*>();
+    std::vector<Task> v = std::vector<Task>();
     std::string str;
     while (fin>>str){
-        v->push_back(getStationFromLine(str));
+        v.push_back(getTaskFromLine(str));
     }
     return v;
 }
 
-Worker *getWorkerFromLine(std::string line) {
-    int id, x, y;
+Worker getWorkerFromLine(std::string line) {
+    int id=0, x=0, y=0;
     double score;
     int le = line.length();
     int begin = 0, end = 0, ct = 0;
@@ -109,21 +112,21 @@ Worker *getWorkerFromLine(std::string line) {
                 break;
         }
     }
-    Worker *worker = new Worker(id,score,Position<int,int>(x,y),false);
+    Worker worker = Worker(id,score,Position<int,int>(x,y));
     return worker;
 }
 
 
-std::vector<Worker*> *getWorkersFromFile(std::string workerFileName) {
+std::vector<Worker> getWorkersFromFile(std::string workerFileName) {
     std::ifstream fin(workerFileName,std::ios::in);
     if(!fin){
         std::cout<<"open file failed!"<<std::endl;
-        return nullptr;
+        return {};
     }
-    std::vector<Worker*> *v = new std::vector<Worker*>();
+    std::vector<Worker> v = std::vector<Worker>();
     std::string str;
     while (fin>>str){
-        v->push_back(getWorkerFromLine(str));
+        v.push_back(getWorkerFromLine(str));
     }
     return v;
 }

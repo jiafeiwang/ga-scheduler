@@ -2,14 +2,14 @@
 // Created by 加菲汪 on 2022/2/23.
 //
 
-#ifndef BS_ALLOCATOR_POSITION_HPP
-#define BS_ALLOCATOR_POSITION_HPP
+#ifndef GA_SCHEDULER_POSITION_HPP
+#define GA_SCHEDULER_POSITION_HPP
 
 #include <cmath>
 #include <iostream>
 
 /**
- * 站点的位置参数，重载了运算符 "-"，用于计算两个position的欧式距离
+ * 封装位置信息，重载了运算符 "-"，用于计算两个position的欧式距离
  * @tparam T1
  * @tparam T2
  */
@@ -55,10 +55,10 @@ public:
      */
     double operator- (Position const &other){
         double sq = pow(X-other.getX(),2)+pow(Y-other.getY(),2);
-        return sqrt(sq);
+        return sqrt(sq)/1000;
     }
 
 };
 
 
-#endif //BS_ALLOCATOR_POSITION_HPP
+#endif //GA_SCHEDULER_POSITION_HPP

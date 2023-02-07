@@ -1,167 +1,105 @@
 //
-// Created by 加菲汪 on 2022/2/24.
+// Created by 加菲汪 on 2023/2/4.
 //
 
-#ifndef BS_ALLOCATOR_GA_H
-#define BS_ALLOCATOR_GA_H
+#ifndef GA_SCHEDULER_GA_H
+#define GA_SCHEDULER_GA_H
 
 
 #include <vector>
-#include <list>
-#include "StationNode.h"
-#include "constant_param.h"
+#include "Task.h"
+#include "Worker.h"
+#include "Chromosome.h"
 
 /**
- * 定义了遗传算法的基本步骤
+ * initialChromosome->gaIter
  */
-class GA {
 
+class Ga {
 private:
-    std::vector<StationNode *> *nodeVec; //StationNode集合
-    std::vector<Worker *> *workerVec; //Worker集合
+    int heldChromosomeNum; //每轮保留的染色体数量
+    int slotNum; //时间槽数
+    int workerNum; //worker数
+
+    bool isInitial=false; //初始化tag
+
+    std::vector<Chromosome> chromosomes; //种群
+    std::vector<Task> tasks; //task数据集
+    std::vector<Worker> workers; //worker数据集
 
 public:
-    GA();
 
-    GA(std::vector<StationNode *> *nodeVec, std::vector<Worker*> *workerVec);
+    Ga(int heldChromosomeNum, int slotNum, int workerNum,
+            const std::vector<Task> &tasks, const std::vector<Worker> &workers);
 
-    virtual ~GA();
+    virtual ~Ga();
 
-    std::vector<StationNode *> *getNodeVec() const;
+    int getHeldChromosomeNum() const;
 
-    void setNodeVec(std::vector<StationNode *> *nodeVec);
+    void setHeldChromosomeNum(int heldChromosomeNum);
 
-    std::vector<Worker *> *getWorkerVec() const;
+    int getSlotNum() const;
 
-    void setWorkerVec(std::vector<Worker *> *workerVec);
+    void setSlotNum(int slotNum);
 
+    int getWorkerNum() const;
 
-    /**
-     * 贪心算法生成初代种群
-     * @param workerVec
-     */
-    void getOriginalGroup();
+    void setWorkerNum(int workerNum);
 
-    /**
-     * 种群演化
-     */
-    void evolution();
+    bool getIsInitial() const;
 
-    /**
-     * worker间的操作：交换head
-     */
-    void workerOpt();
+    void setIsInitial(bool isInitial);
 
-    /**
-     * stationNode操作：两个stationNode拼接
-     */
-    void stationNodeOpt();
+    const std::vector<Chromosome> &getChromosomes() const;
+
+    void setChromosomes(const std::vector<Chromosome> &chromosomes);
+
+    const std::vector<Task> &getTasks() const;
+
+    void setTasks(const std::vector<Task> &tasks);
+
+    const std::vector<Worker> &getWorkers() const;
+
+    void setWorkers(const std::vector<Worker> &workers);
 
     /**
-     * stationNode和worker间操作，将stationNode与worker进行拼接
+     * 初始化种群
+     * @param maxCkTimes
      */
-    void nodeWorkerOpt();
+    void initialChromosome(int maxCkTimes= 1e6);
 
     /**
-     * 多次演化迭代进行优化
-     * @param n_iter
+     * 在种群中随机选取个体chromosome进行遗传操作，生成新的后代
+     * @param mutateTimes 随机抽取个体的次数
+     * @param taskMtTimes 被选中个体进行基因操作的次数
+     * @param maxCkTimes 基因操作在满足约束条件下随机尝试的最高次数，默认1e6
      */
-    void optimize(int n_iter);
+    void mutate(int mutateTimes, int taskMtTimes, int propFreq, int maxCkTimes= 1e6);
+
+//    void cross(int crossTimes=100, int taskCsTimes=100);
+    /**
+     * 按个体fitness由高到低排序，每轮只保留heldChromosomeNum数量的个体
+     */
+    void select();
 
     /**
-     * 获取stationNode头节点
-     * @return
+     * 按 mutate->select顺序进行迭代
+     * @param iterNum 迭代次数
+     * @param mutateTimes 每轮迭代从保留的个体中随机抽取个体的次数
+     * @param taskMtTimes 被选中个体进行基因操作的次数
+     * @param maxCkTimes 基因操作在满足约束条件下随机尝试的最高次数，默认1e6
      */
-    std::vector<StationNode*> *getHeadNodeVec();
-
+    void gaIter(int iterNum, int mutateTimes, int taskMtTimes,
+//            int crossTimes=100, int taskCsTimes=100,
+                int propFreq, int maxCkTimes= 1e6);
     /**
-     * 计算平均价值
-     * @param headVec
-     * @return
+     * 检查保留的染色体是否满足边界条件
+     * @param tasks
+     * @param workers
      */
-    int getAvgWorthy(std::vector<StationNode*> *headVec);
 
+    void check(const std::vector<Task> &tasks, const std::vector<Worker> &workers);
 };
 
-/**
- * 定义两个stationNode的worker缺失类型
- */
-enum LackWorkerType{
-    NotLack, //两个节点都不缺失worker
-    PreLack, //前面的节点缺失worker
-    BackLack, //后面的节点缺失worker
-    BothLack, //两个都缺失worker
-};
 
-/**
- * worker->head的总价值
- * @param worker
- * @return
- */
-double getWorthy(Worker *worker);
-
-/**
- * 如果将head设置为worker的head，head对应链表的Worthy能达到多少
- * @param worker
- * @param head
- * @return
- */
-double getWorthy(Worker *worker, StationNode *head);
-
-/**
- * 计算node及下游节点的worthy之和
- * @param node
- * @return
- */
-double getWorthy(StationNode *node);
-
-/**
- * 计算把node2拼接到node1上，node2及下游节点的worthy之和
- * @param node1
- * @param node2
- * @return
- */
-double getWorthy(StationNode *node1, StationNode *node2);
-
-/**
- * 交换两个worker
- * @param worker1
- * @param worker2
- */
-void swapWorker(Worker *worker1, Worker *worker);
-
-/**
- * 判断node2是否已经连接在node1的下游
- * @param node1
- * @param node2
- * @return
- */
-bool isInChain(StationNode *node1, StationNode *node2);
-
-/**
- * 判断做完node1是否还来得及做node2
- * @param node1
- * @param node2
- * @return
- */
-bool canCatch(StationNode *node1, StationNode *node2);
-
-/**
- * 根据node1，node2 worker缺失的类型，判断将node2拼接在node1之后是否整体worthy会升高
- * @param node1
- * @param node2
- * @param lackWorkerType
- * @return
- */
-bool compareSpliceLoss(StationNode *node1, StationNode *node2, LackWorkerType lackWorkerType);
-/**
- * 链表的拼接算子，前提是node1无next节点且node2无pre节点
- * @param node1
- * @param node2
- */
-void spliceOperator(StationNode *node1, StationNode *node2, LackWorkerType lackWorkerType);
-
-
-
-
-#endif //BS_ALLOCATOR_GA_H
+#endif //GA_SCHEDULER_GA_H
