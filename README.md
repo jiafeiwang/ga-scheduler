@@ -1,6 +1,7 @@
 <p align="left">
   <img src='https://img.shields.io/badge/c++-11-blue'>
-</p>  
+</p>
+
 # 遗传算法对”到家“服务派单进行优化
 提供了一套用遗传算法对到家服务进行派单的方案，业务背景https://juejin.cn/post/7071934813292199949。
 
