@@ -1,8 +1,8 @@
-# 一种多目标调度优化的遗传算法实现
-提供了一种用遗传算法解决多目标线性规划的样例：给位于不同position的station分配worker，使得整体的score尽可能高。
+# 遗传算法对”到家“服务派单进行优化
+提供了一套用遗传算法对到家服务进行派单的方案，业务背景。
 
 ## 说明
-1. 运行时需要指定运行路径为项目路径，用于从data目录下读取station和worker数据，stationInfo.csv和workerInfo.csv下各提供了一条样例数据，可以参照样例数据格式造一批数进行测试；
-2. constant_param下定义了一些常量与系数，io_utils下定义了从data目录下读取样例数据的方法；
-3. Postion、Station、worker分别定义了用于封装位置、站点与操作员信息的类，StationNode下定义了链表节点；
-4. GA中定义了用于生成初始种群、进行遗传操作以及演化的方法。
+1. data目录下存放了task和worker相关数据；
+2. Gene、Chromosome分别定义了基因和染色体的结构和操作算子，Ga中对初始化、演化等遗传操作做了进一步封装。
+3. Postion、Task、Worker定义了一些元数据结构。
+4. data_reader中定义了一些读取数据的方法。
